@@ -1,0 +1,35 @@
+#login {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   min-height: 100vh;
+   padding: 0 2rem;
+}
+
+#login .form {
+   font-size: 1.5rem;
+   background-color: #868686;
+   width: 100%;
+   max-width: 480px;
+   padding: 0.5rem;
+}
+
+#login .field label {
+   display: block;
+}
+
+#login .field input {
+   height: 2rem;
+   width: 100%;
+}
+
+#login .actions {
+   text-align: right;
+   margin-top: 1rem;
+   
+}
+
+#login .actions button {
+   font-size: 1.5rem;
+}
