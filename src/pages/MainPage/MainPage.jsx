@@ -16,6 +16,10 @@ export function MainPage() {
       console.log('clear');
    }
 
+   const handleDeleteRepo = () => {
+      console.log('delete repo');
+   }
+
    return(
       <div id="main">
          <div className="nav">
@@ -30,6 +34,19 @@ export function MainPage() {
             <button onClick={handleSearch}>Procurar</button>
          </div>
 
+         <div className="repositories">
+            <h2 className="title">Repositórios</h2>
+
+            <ul className="list">
+               <li className="item">
+                  <div className="info">
+                     <div className="owner">facebook</div>
+                     <div className="name">react</div>
+                  </div>
+                  <button onClick={handleDeleteRepo}>Apagar</button>
+               </li>
+            </ul>
+         </div>
 
       </div>
    )
