@@ -1,10 +1,13 @@
+import React from "react"
+
+import { AppRoutes } from './AppRoutes';
 
 
 function App() {
   
   return (
     <div>
-      <h1>Olá meu chapa</h1>
+      <AppRoutes/>
     </div>
   )
 }
