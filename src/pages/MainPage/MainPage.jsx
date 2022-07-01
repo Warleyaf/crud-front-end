@@ -46,6 +46,12 @@ export function MainPage() {
                   <button onClick={handleDeleteRepo}>Apagar</button>
                </li>
             </ul>
+
+            <div className="new">
+               <label htmlFor="new-repo">Novo Repo:</label>
+               <input type="url" name="new-repo" id="new-repo"/>
+               <button>Adicionar</button>
+            </div>
          </div>
 
       </div>
