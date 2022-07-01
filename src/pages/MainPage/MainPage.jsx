@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Nav } from "./Nav";
+
 import './MainPage.css';
 
 export function MainPage() {
@@ -22,11 +24,7 @@ export function MainPage() {
 
    return(
       <div id="main">
-         <div className="nav">
-            <h1 className="logo">SisRepo</h1>
-            <button onClick={handleLogout}>Sair</button>
-         </div>
-
+         <Nav onLogout={handleLogout}/>
          <div className="search">
             <label htmlFor="query">Procurar</label>
             <input type="search" name="query" id="query" />
