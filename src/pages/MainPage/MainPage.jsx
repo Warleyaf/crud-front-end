@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Nav } from "./Nav";
+import { Search } from "./Search";
 
 import './MainPage.css';
 
@@ -14,10 +15,6 @@ export function MainPage() {
       console.log('query', query);
    }
 
-   const handleClear = () => {
-      console.log('clear');
-   }
-
    const handleDeleteRepo = () => {
       console.log('delete repo');
    }
@@ -25,12 +22,9 @@ export function MainPage() {
    return(
       <div id="main">
          <Nav onLogout={handleLogout}/>
-         <div className="search">
-            <label htmlFor="query">Procurar</label>
-            <input type="search" name="query" id="query" />
-            <button onClick={handleClear}>Limpar</button>
-            <button onClick={handleSearch}>Procurar</button>
-         </div>
+         <Search 
+            onSearch={handleSearch}
+         />
 
          <div className="repositories">
             <h2 className="title">Repositórios</h2>
