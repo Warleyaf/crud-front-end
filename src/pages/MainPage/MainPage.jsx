@@ -8,9 +8,11 @@ import { Search } from "./Search";
 import './MainPage.css';
 import { Repositories } from "./Repositories";
 
-import { getRepositories } from "../../services/api";
+import { getRepositories, createRepository } from "../../services/api";
 
 import { Link } from "react-router-dom";
+
+//================================================================================//
 
 const userId = '62b9be499bfec0d2626c3efc'
 
@@ -51,8 +53,15 @@ export function MainPage() {
       console.log('delete repo', repository);
    }
 
-   const handleNewRepo = (url) => {
+   const handleNewRepo = async (url) => {
       console.log('new Repo', url);
+      try {
+         await createRepository(userId, url);
+         await loadData();
+      } catch (err) {
+         console.error(err);
+         setLoading(true)
+      }
    }
 
    if (loadingError) {

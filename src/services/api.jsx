@@ -15,3 +15,11 @@ export const getRepositories = async(userId, query) => {
 
    return api.get(url);
 }
+
+// método para criar o repo no front
+
+export const createRepository = async (userId, repositoryUrl) => {
+   const url = `/users/${userId}/repositories`;
+
+   return api.post(url, {name: 'facebook/react', url: repositoryUrl});
+}
