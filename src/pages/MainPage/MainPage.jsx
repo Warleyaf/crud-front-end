@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { useState } from 'react'
 import { useEffect } from "react";
+import { useContext } from "react";
 
 import { Nav } from "./Nav";
 import { Search } from "./Search";
@@ -11,12 +12,14 @@ import { Repositories } from "./Repositories";
 import { getRepositories, createRepository, destroyRepository } from "../../services/api";
 
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/auth";
 
 //================================================================================//
 
 const userId = '62b9be499bfec0d2626c3efc'
 
 export function MainPage() {
+   const {user} = useContext(AuthContext);
    const [repositories, setRepositories] = useState([])
    const [loading, setLoading] = useState(true);
    const [loadingError, setLoadingError] = useState(false);
@@ -89,6 +92,7 @@ export function MainPage() {
          <Search
             onSearch={handleSearch}
          />
+         <p> Olá {user.email}!</p>
 
          <Repositories
             repositories={repositories}
