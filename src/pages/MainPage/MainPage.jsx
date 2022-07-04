@@ -8,7 +8,7 @@ import { Search } from "./Search";
 import './MainPage.css';
 import { Repositories } from "./Repositories";
 
-import { getRepositories, createRepository } from "../../services/api";
+import { getRepositories, createRepository, destroyRepository } from "../../services/api";
 
 import { Link } from "react-router-dom";
 
@@ -49,8 +49,10 @@ export function MainPage() {
       console.log('query', query);
    }
 
-   const handleDeleteRepo = (repository) => {
+   const handleDeleteRepo = async (repository) => {
       console.log('delete repo', repository);
+      await destroyRepository(userId, repository._id);
+      await loadData();
    }
 
    const handleNewRepo = async (url) => {

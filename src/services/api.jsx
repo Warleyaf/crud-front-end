@@ -26,6 +26,12 @@ export const createRepository = async (userId, repositoryUrl) => {
    return api.post(url, {name: repositoryName, url: repositoryUrl});
 }
 
+export const destroyRepository = async (userId, id) => {
+   const url = `/users/${userId}/repositories/${id}`;
+   return api.delete(url);
+} 
+
+
 const getRepositoryName = (url) => {
    //https://ihateregex.io/expr/url
    const regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/;

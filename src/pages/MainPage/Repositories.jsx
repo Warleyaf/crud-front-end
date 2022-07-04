@@ -21,7 +21,7 @@ export function Repositories({ repositories, onDeleteRepo, onNewRepo }) {
                            {repository.name.substring(repository.name.indexOf('/') + 1)}
                         </div>
                      </div>
-                     <button onClick={() => onDeleteRepo(null)}>Apagar</button>
+                     <button onClick={() => onDeleteRepo(repository)}>Apagar</button>
                   </li>
                ))
             }
