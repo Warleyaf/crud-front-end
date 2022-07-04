@@ -1,14 +1,13 @@
 import React from "react"
-import { useContext } from "react";
 
 import { AppRoutes } from './AppRoutes';
 
-import { AuthContext } from './contexts/auth';
+import { AuthProvider } from './contexts/auth';
 function App() {
   
   return (
     <div>
-      <AuthContext.Provider 
+      <AuthProvider
         value={{userId: '123', 
         user: {
           email: 'warley@gmail.com'
@@ -16,7 +15,7 @@ function App() {
         
       >
         <AppRoutes/>
-      </AuthContext.Provider>
+      </AuthProvider>
       
     </div>
   )
