@@ -3,30 +3,41 @@ import { useState } from "react";
 
 export function Repositories({ repositories, onDeleteRepo, onNewRepo }) {
 
-   const [ newRepo, setNewRepo ] = useState('');
+   const [newRepo, setNewRepo] = useState('');
 
-   return(
+   return (
       <div className="repositories">
          <h2 className="title">Repositórios</h2>
 
          <ul className="list">
-            <li className="item">
-               <div className="info">
-                  <div className="owner">facebook</div>
-                  <div className="name">react</div>
-               </div>
-               <button onClick={() => onDeleteRepo(null)}>Apagar</button>
-            </li>
+            {
+               repositories.map((repository) => (
+                  <li className="item" key={repository._id}>
+                     <div className="info">
+                        <div className="owner">
+                           {repository.name.substring(0, repository.name.indexOf('/'))}
+                        </div>
+                        <div className="name">
+                           {repository.name.substring(repository.name.indexOf('/') + 1)}
+                        </div>
+                     </div>
+                     <button onClick={() => onDeleteRepo(null)}>Apagar</button>
+                  </li>
+               ))
+            }
+
+
+
          </ul>
 
          <div className="new">
             <label htmlFor="new-repo">Novo Repo:</label>
-            <input 
-               type="url" 
-               name="new-repo" 
+            <input
+               type="url"
+               name="new-repo"
                id="new-repo"
                value={newRepo}
-               onChange={(e) => setNewRepo(e.target.value)}   
+               onChange={(e) => setNewRepo(e.target.value)}
             />
             <button onClick={() => onNewRepo(newRepo)}>Adicionar</button>
          </div>
