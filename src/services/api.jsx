@@ -13,6 +13,8 @@ export const getRepositories = async(userId, query) => {
       url += `?q=${query}`;
    }
 
+   console.log('query', url);
+
    return api.get(url);
 }
 

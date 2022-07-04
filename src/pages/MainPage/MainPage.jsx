@@ -24,7 +24,7 @@ export function MainPage() {
    const loadData = async (query = '') => {
       try {
          setLoading(true);
-         const response = await getRepositories(userId);
+         const response = await getRepositories(userId, query);
          setRepositories(response.data)
          setLoading(false)
          
@@ -46,7 +46,7 @@ export function MainPage() {
    }
 
    const handleSearch = (query) => {
-      console.log('query', query);
+      loadData(query)
    }
 
    const handleDeleteRepo = async (repository) => {
