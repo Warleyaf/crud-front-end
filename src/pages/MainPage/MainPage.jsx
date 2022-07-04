@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from 'react'
+import { useEffect } from "react";
 
 import { Nav } from "./Nav";
 import { Search } from "./Search";
@@ -6,7 +8,25 @@ import { Search } from "./Search";
 import './MainPage.css';
 import { Repositories } from "./Repositories";
 
+import { getRepositories } from "../../services/api";
+
+const userId = '62b9be499bfec0d2626c3efc'
+
 export function MainPage() {
+   const [repositories, setRepositories] = useState([])
+
+   const loadData = async (query = '') => {
+      const response = await getRepositories(userId);
+
+      console.log(response.data)
+
+      setRepositories(response.data)
+   }
+
+   useEffect(() => {
+      // essa função aqui meio que é um shortcode
+      (async() => await loadData())();
+   }, []);
 
    const handleLogout = () => {
       console.log('Logout')
@@ -32,7 +52,7 @@ export function MainPage() {
          />
 
          <Repositories 
-            repositories={[]}
+            repositories={repositories}
             onDeleteRepo={handleDeleteRepo}
             onNewRepo={handleNewRepo}  
          />
