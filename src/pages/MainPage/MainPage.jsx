@@ -10,22 +10,33 @@ import { Repositories } from "./Repositories";
 
 import { getRepositories } from "../../services/api";
 
+import { Link } from "react-router-dom";
+
 const userId = '62b9be499bfec0d2626c3efc'
 
 export function MainPage() {
    const [repositories, setRepositories] = useState([])
+   const [loading, setLoading] = useState(true);
+   const [loadingError, setLoadingError] = useState(false);
 
    const loadData = async (query = '') => {
-      const response = await getRepositories(userId);
+      try {
+         setLoading(true);
+         const response = await getRepositories(userId);
+         setRepositories(response.data)
+         setLoading(false)
+         
+      } catch (error) {
+         console.log(err);
+         setLoadingError(true);
+      }
 
-      console.log(response.data)
-
-      setRepositories(response.data)
+      
    }
 
    useEffect(() => {
       // essa função aqui meio que é um shortcode
-      (async() => await loadData())();
+      (async () => await loadData())();
    }, []);
 
    const handleLogout = () => {
@@ -44,17 +55,34 @@ export function MainPage() {
       console.log('new Repo', url);
    }
 
-   return(
+   if (loadingError) {
+      return(
+         <div className="loading">
+            Erro ao carregar os dados de repositório. <Link to="/login">Voltar</Link>.
+         </div>
+      )
+   }
+
+   if (loading) {
+      return(
+         <div className="loading">
+            Carregando...
+         </div>
+      )
+   }
+
+
+   return (
       <div id="main">
-         <Nav onLogout={handleLogout}/>
-         <Search 
+         <Nav onLogout={handleLogout} />
+         <Search
             onSearch={handleSearch}
          />
 
-         <Repositories 
+         <Repositories
             repositories={repositories}
             onDeleteRepo={handleDeleteRepo}
-            onNewRepo={handleNewRepo}  
+            onNewRepo={handleNewRepo}
          />
 
 
