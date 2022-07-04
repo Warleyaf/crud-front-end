@@ -14,7 +14,7 @@ export function Search({ onClear, onSearch }) {
       <div className="search">
          <label htmlFor="query">Procurar</label>
          <input 
-            type="search" 
+            type="text" 
             name="query" 
             id="query" 
             value={query} 

@@ -4,6 +4,7 @@ import { Nav } from "./Nav";
 import { Search } from "./Search";
 
 import './MainPage.css';
+import { Repositories } from "./Repositories";
 
 export function MainPage() {
 
@@ -15,8 +16,12 @@ export function MainPage() {
       console.log('query', query);
    }
 
-   const handleDeleteRepo = () => {
-      console.log('delete repo');
+   const handleDeleteRepo = (repository) => {
+      console.log('delete repo', repository);
+   }
+
+   const handleNewRepo = (url) => {
+      console.log('new Repo', url);
    }
 
    return(
@@ -26,25 +31,12 @@ export function MainPage() {
             onSearch={handleSearch}
          />
 
-         <div className="repositories">
-            <h2 className="title">Repositórios</h2>
+         <Repositories 
+            repositories={[]}
+            onDeleteRepo={handleDeleteRepo}
+            onNewRepo={handleNewRepo}  
+         />
 
-            <ul className="list">
-               <li className="item">
-                  <div className="info">
-                     <div className="owner">facebook</div>
-                     <div className="name">react</div>
-                  </div>
-                  <button onClick={handleDeleteRepo}>Apagar</button>
-               </li>
-            </ul>
-
-            <div className="new">
-               <label htmlFor="new-repo">Novo Repo:</label>
-               <input type="url" name="new-repo" id="new-repo"/>
-               <button>Adicionar</button>
-            </div>
-         </div>
 
       </div>
    )
